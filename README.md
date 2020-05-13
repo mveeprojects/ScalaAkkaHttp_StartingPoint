@@ -1,14 +1,13 @@
 # ScalaAkkaHttp_StartingPoint
 
-Basic Scala Akka HTTP web app.
+This codebase is designed as a simple starting point for a Akka Http application.
 
-Simple "Hello, World!" endpoint -> http://localhost:8080/
+### Modules:
 
-Metrics endpoint -> http://localhost:9095/
+#### Api
 
+A simple HTTP API that can be easily extended. 
 
-### Kanela Java agent
+#### Performance
 
-Ensure when running this app the following is included (add to the VM options of your run config if using IntelliJ)
-
-`-javaagent:D:\Workspace\ScalaAkkaHttp_StartingPoint\bin\kanela-agent-1.0.5.jar`
+Basic performance tests written using Gatling.

@@ -11,6 +11,7 @@ lazy val akkaHttpVersion = "10.1.11"
 lazy val scalaLoggingVersion = "3.9.2"
 lazy val logbackVersion = "1.2.3"
 lazy val kamonVersion = "2.1.0"
+lazy val gatlingVersion = "3.3.1"
 
 val apiDependencies: Def.Setting[Seq[ModuleID]] = libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-actor" % akkaVersion,
@@ -24,5 +25,14 @@ val apiDependencies: Def.Setting[Seq[ModuleID]] = libraryDependencies ++= Seq(
   "io.kamon" %% "kamon-prometheus" % kamonVersion
 )
 
+val performanceDependencies: Def.Setting[Seq[ModuleID]] = libraryDependencies ++= Seq(
+  "io.gatling" % "gatling-core" % gatlingVersion,
+  "io.gatling" % "gatling-app" % gatlingVersion,
+  "io.gatling.highcharts" % "gatling-highcharts" % gatlingVersion
+)
+
 lazy val api: Project = project.in(file("api"))
   .settings(apiDependencies: _*)
+
+lazy val performance: Project = project.in(file("performance"))
+  .settings(performanceDependencies: _*)
