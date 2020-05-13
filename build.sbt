@@ -28,7 +28,7 @@ val apiDependencies: Def.Setting[Seq[ModuleID]] = libraryDependencies ++= Seq(
 val performanceDependencies: Def.Setting[Seq[ModuleID]] = libraryDependencies ++= Seq(
   "io.gatling" % "gatling-core" % gatlingVersion,
   "io.gatling" % "gatling-app" % gatlingVersion,
-  "io.gatling.highcharts" % "gatling-highcharts" % gatlingVersion
+  "io.gatling.highcharts" % "gatling-charts-highcharts" % gatlingVersion
 )
 
 lazy val api: Project = project.in(file("api"))
