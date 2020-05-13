@@ -1,3 +1,5 @@
+import sbt.Def
+
 name := "ScalaAkkaHttp_StartingPoint"
 
 version := "0.1"
@@ -10,7 +12,7 @@ lazy val scalaLoggingVersion = "3.9.2"
 lazy val logbackVersion = "1.2.3"
 lazy val kamonVersion = "2.1.0"
 
-libraryDependencies ++= Seq(
+val apiDependencies: Def.Setting[Seq[ModuleID]] = libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-actor" % akkaVersion,
   "com.typesafe.akka" %% "akka-stream" % akkaVersion,
   "com.typesafe.akka" %% "akka-http" % akkaHttpVersion,
@@ -21,3 +23,6 @@ libraryDependencies ++= Seq(
   "io.kamon" %% "kamon-system-metrics" % kamonVersion exclude("org.slf4j", "slf4j-api"),
   "io.kamon" %% "kamon-prometheus" % kamonVersion
 )
+
+lazy val api: Project = project.in(file("api"))
+  .settings(apiDependencies: _*)
