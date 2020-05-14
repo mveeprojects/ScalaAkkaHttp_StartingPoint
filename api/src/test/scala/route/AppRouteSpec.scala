@@ -25,5 +25,3 @@ class AppRouteSpec extends FeatureSpec with GivenWhenThen with Matchers with Res
     }
   }
 }
-
-
