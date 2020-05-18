@@ -12,6 +12,13 @@ lazy val scalaLoggingVersion = "3.9.2"
 lazy val logbackVersion = "1.2.3"
 lazy val kamonVersion = "2.1.0"
 lazy val gatlingVersion = "3.3.1"
+lazy val scalaTestVersion = "3.0.8"
+lazy val restAssuredVersion = "4.1.1"
+
+val testingDependencies = Seq(
+  "org.scalatest" %% "scalatest" % scalaTestVersion % Test,
+  "io.rest-assured" % "rest-assured" % restAssuredVersion % Test
+)
 
 val apiDependencies: Def.Setting[Seq[ModuleID]] = libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-actor" % akkaVersion,
@@ -23,7 +30,7 @@ val apiDependencies: Def.Setting[Seq[ModuleID]] = libraryDependencies ++= Seq(
   "io.kamon" %% "kamon-akka-http" % kamonVersion,
   "io.kamon" %% "kamon-system-metrics" % kamonVersion exclude("org.slf4j", "slf4j-api"),
   "io.kamon" %% "kamon-prometheus" % kamonVersion
-)
+) ++ testingDependencies
 
 val performanceDependencies: Def.Setting[Seq[ModuleID]] = libraryDependencies ++= Seq(
   "io.gatling" % "gatling-core" % gatlingVersion,
