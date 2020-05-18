@@ -1,9 +1,9 @@
 import sbt.Def
+import sbtassembly.MergeStrategy
 
 name := "ScalaAkkaHttp_StartingPoint"
-
 version := "0.1"
-
+organization := "mveeprojects"
 scalaVersion := "2.13.1"
 
 lazy val akkaVersion = "2.6.3"
@@ -38,8 +38,22 @@ val performanceDependencies: Def.Setting[Seq[ModuleID]] = libraryDependencies ++
   "io.gatling.highcharts" % "gatling-charts-highcharts" % gatlingVersion
 )
 
-lazy val api: Project = project.in(file("api"))
-  .settings(apiDependencies: _*)
+lazy val mergeStrategy = assemblyMergeStrategy in assembly := {
+  case PathList("META-INF", _*) => MergeStrategy.discard
+  case _ => MergeStrategy.first
+}
 
-lazy val performance: Project = project.in(file("performance"))
+lazy val apiAssemblySettings = Seq(mergeStrategy, mainClass in assembly := Some("Application"))
+
+lazy val performanceAssemblySettings = Seq(mergeStrategy, mainClass in assembly := Some("PerformanceMain"))
+
+lazy val api: Project = (project in file("api"))
+  .settings(apiDependencies: _*)
+  .settings(apiAssemblySettings: _*)
+
+lazy val performance: Project = (project in file("performance"))
   .settings(performanceDependencies: _*)
+  .settings(performanceAssemblySettings: _*)
+
+lazy val root: Project = (project in file("."))
+  .aggregate(api, performance)

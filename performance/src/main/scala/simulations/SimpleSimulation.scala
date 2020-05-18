@@ -7,6 +7,7 @@ import io.gatling.http.protocol.HttpProtocolBuilder
 import scenarios.SimpleScenario
 
 import scala.concurrent.duration._
+import scala.language.postfixOps
 
 class SimpleSimulation extends Simulation with PerformanceConfig {
 
