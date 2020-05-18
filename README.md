@@ -16,6 +16,10 @@ Basic performance tests written using Gatling.
 
 Create a fat JAR for dockerising `sbt clean assembly`
 
+Build API docker image `cd api && docker build .`
+
+Run API docker image `docker run -d -p8080:8080 --name api <imageid>`
+
 ### Sources:
 * https://dzone.com/articles/dockerizing-your-scala-app
 * https://www.scala-sbt.org/1.x/docs/Multi-Project.html
