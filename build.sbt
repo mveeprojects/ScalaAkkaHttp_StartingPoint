@@ -40,6 +40,7 @@ val performanceDependencies: Def.Setting[Seq[ModuleID]] = libraryDependencies ++
 
 lazy val mergeStrategy = assemblyMergeStrategy in assembly := {
   case PathList("META-INF", _*) => MergeStrategy.discard
+  case PathList("reference.conf") => MergeStrategy.concat
   case _ => MergeStrategy.first
 }
 

@@ -1,12 +1,12 @@
 # ScalaAkkaHttp_StartingPoint
 
-This codebase is designed as a simple starting point for a Akka Http application.
+This codebase is designed as a simple starting point for an Akka HTTP application.
 
 ### Modules:
 
 #### Api
 
-A simple HTTP API that can be easily extended. 
+A simple HTTP API that can be easily extended.
 
 #### Performance
 
@@ -16,9 +16,9 @@ Basic performance tests written using Gatling.
 
 Create a fat JAR for dockerising `sbt clean assembly`
 
-Build API docker image `cd api && docker build .`
+Build API docker image `cd api && docker build . -t starting-point-api`
 
-Run API docker image `docker run -d -p8080:8080 --name api <imageid>`
+Run API docker image `docker run -d -p8080:8080 --name api starting-point-api`
 
 ### Sources:
 * https://dzone.com/articles/dockerizing-your-scala-app
