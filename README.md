@@ -16,7 +16,7 @@ Basic performance tests written using Gatling.
 
 Create a fat JAR for dockerising `sbt clean assembly`
 
-Build API docker image `cd api && docker build . -t starting-point-api`
+Build API docker image `cd api` then `docker build . -t starting-point-api`
 
 Run API docker image `docker run -d -p8080:8080 --name api starting-point-api`
 
