@@ -31,13 +31,13 @@ To stop the containers when finished, run the above commands replacing the suffi
 
 ### Endpoints
 
-[API "Hello, World!" endpoint](https://localhost:8080)
+[API "Hello, World!" endpoint](http://localhost:8080)
 
-[API metrics endpoint](https://localhost:9095)
+[API metrics endpoint](http://localhost:9095)
 
-[Prometheus](https://localhost:9090)
+[Prometheus](http://localhost:9090)
 
-[Grafana](https://localhost:3000)
+[Grafana](http://localhost:3000)
 
 ### Very basic PromQL queries for use in Grafana
 
