@@ -22,7 +22,7 @@ Build API docker image `cd api` then `docker build . -t starting-point-api`
 
 ### Running the API with monitoring (Prometheus and Grafana)
 
-Note: Make sure you've built the api docker image as shown in the section above, and you are in the root of the project before running these commands.
+_*Note:*_ Make sure you've built the api docker image as shown in the section above, and you are in the root of the project before running these commands.
  
 Windows (PowerShell) `docker-compose -f .\docker\docker-compose-api-and-monitoring.yml up -d`
 Unix `docker-compose -f ./docker/docker-compose-api-and-monitoring.yml up -d`
