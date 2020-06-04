@@ -16,7 +16,7 @@ Basic performance tests written using Gatling to provide a basic level of traffi
 
 ### Creating a JAR and Docker image of the API
 
-Create a fat JAR for dockerising `sbt clean assembly`
+Create a fat JAR for dockerising `sbt clean assembly` (if using a Unix OS and you do not have sbt installed on your machine you can replace `sbt` with `./bin/sbtw` to workaround this)
 
 Build API docker image `cd api` then `docker build . -t starting-point-api`
 
