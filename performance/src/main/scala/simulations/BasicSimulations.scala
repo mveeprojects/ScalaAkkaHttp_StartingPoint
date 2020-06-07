@@ -22,6 +22,10 @@ class BasicSimulations extends Simulation with PerformanceConfig {
     Endpoint404Scenario.getNonExistentEndpointScenario.inject(
       atOnceUsers(3),
       rampUsersPerSec(rampUpUsersPerSec/varianceOf4xx) to numberOfUsers/varianceOf4xx during (rampUpDuration seconds)
+    ),
+    Endpoint200DelayScenario.getRandomDelayEndpointScenario.inject(
+      atOnceUsers(10),
+      rampUsersPerSec(rampUpUsersPerSec) to numberOfUsers during (rampUpDuration seconds)
     )
   )
 

@@ -51,13 +51,16 @@ When you're finished, run the below command from the root of the project to stop
 
 ### Very basic PromQL queries for use in Grafana
 
-Show increase in 2xx responses per minute `increase(http_server_requests_total{http_status_code="2xx"}[1m])`
+Shows the rate of 2xx responses per minute `rate(http_server_requests_total{http_status_code="2xx"}[1m])`
 
-Show increase in 4xx responses per minute `increase(http_server_requests_total{http_status_code="4xx"}[1m])`
+Show the rate of 4xx responses per minute `rate(http_server_requests_total{http_status_code="4xx"}[1m])`
 
-### Sources
+### References/Sources
 
 * https://dzone.com/articles/dockerizing-your-scala-app
 * https://www.scala-sbt.org/1.x/docs/Multi-Project.html
 * https://stackoverflow.com/a/58024050/3059314
 * https://timber.io/blog/promql-for-humans/
+* https://www.youtube.com/watch?v=hTjHuoWxsks (PromCon EU 2019: PromQL for Mere Mortals)
+* https://www.youtube.com/watch?v=nJMRmhbY5hY (Around 9m 30s for histogram quantile prometheus queries)
+* https://www.youtube.com/watch?v=_nZSrY784sY (Good explanation of rate())
