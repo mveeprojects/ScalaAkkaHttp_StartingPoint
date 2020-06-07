@@ -12,33 +12,42 @@ A simple HTTP API that can be easily extended.
 
 Basic performance tests written using Gatling to provide a basic level of traffic and therefore sample metrics.
 
+## Prerequisites
+
+### Docker (inc. docker-compose) 
+
+Install this by following [the documentation on the Docker website](https://docs.docker.com/engine/install/)
+
+### SBT
+
+If you're using a unix OS (MacOS/Linux), I have included a `sbtw` file under the `bin` directory at the root of this project so you can just replace the usage of `sbt` with `./bin/sbtw` where necessary.
+
+If you're using Windows or would prefer to download sbt regardless, follow [the documentation on the official SBT website](https://www.scala-sbt.org/1.x/docs/Setup.html)
+
 ## Creating and running the API with monitoring containers
 
-### Creating a JAR and Docker image of the API and Performance modules
+### Building and running the API and Performance modules along with monitoring containers
 
-Create fat JARs for dockerising `sbt clean assembly` (if using a Unix OS and you do not have sbt installed on your machine you can replace `sbt` with `./bin/sbtw`)
+`coldstart.sh` has been added to the root of this project to easily complete the following steps on your behalf:
+* clean down any API, Performance or Monitoring containers using docker-compose
+* build fat JARs of both API and Performance modules
+* build docker images of both API and Performance modules
+* run the API, Performance and Monitoring containers using docker-compose
+  * this automatically triggers the performance tests therefore generating traffic on the API, resulting in metrics available to our Monitoring containers immediately!
 
-Build API docker image `docker build ./api -t api`
+When you're finished, run the below command from the root of the project to stop the API, Performance and Monitoring containers
 
-Build Performance docker image `docker build ./performance -t performance-tests-api`
-
-### Running the API with monitoring (Prometheus and Grafana)
-
-_**Note:**_ Make sure you've built the api and performance docker images as shown in the section above, and you are in the root of the project before running these commands.
- 
-`docker-compose -f ./docker/docker-compose.yml up -d`
-
-To stop the containers when finished, run the above commands replacing the suffix `up -d` with `down`
+`docker-compose -f ./docker/docker-compose.yml down`
 
 ### Endpoints
 
-[API "Hello, World!" endpoint](http://localhost:8080)
+[API "Hello, World!" endpoint (...:8080/)](http://localhost:8080)
 
-[API metrics endpoint](http://localhost:9095)
+[API metrics endpoint (...:9095/)](http://localhost:9095)
 
-[Prometheus](http://localhost:9090)
+[Prometheus (...:9090/)](http://localhost:9090)
 
-[Grafana](http://localhost:3000)
+[Grafana (...:3000/)](http://localhost:3000)
 
 ### Very basic PromQL queries for use in Grafana
 
