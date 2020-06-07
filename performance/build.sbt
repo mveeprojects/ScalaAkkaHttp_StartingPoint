@@ -1,3 +1,3 @@
-name := "starting-point-performance"
+name := "performance"
 
 test in assembly := {}

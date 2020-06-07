@@ -4,20 +4,24 @@ import config.PerformanceConfig
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import io.gatling.http.protocol.HttpProtocolBuilder
-import scenarios.SimpleScenario
+import scenarios._
 
 import scala.concurrent.duration._
 import scala.language.postfixOps
 
-class SimpleSimulation extends Simulation with PerformanceConfig {
+class BasicSimulations extends Simulation with PerformanceConfig {
 
   val httpConf: HttpProtocolBuilder = http.baseUrl(s"http://$host:$port")
+  val varianceOf4xx = 4
 
   val basicEndpointCheckScenarios = List(
-
-    SimpleScenario.getHomeEndpoint.inject(
-      atOnceUsers(1),
+    Endpoint200Scenario.getHomeEndpointScenario.inject(
+      atOnceUsers(12),
       rampUsersPerSec(rampUpUsersPerSec) to numberOfUsers during (rampUpDuration seconds)
+    ),
+    Endpoint404Scenario.getNonExistentEndpointScenario.inject(
+      atOnceUsers(3),
+      rampUsersPerSec(rampUpUsersPerSec/varianceOf4xx) to numberOfUsers/varianceOf4xx during (rampUpDuration seconds)
     )
   )
 

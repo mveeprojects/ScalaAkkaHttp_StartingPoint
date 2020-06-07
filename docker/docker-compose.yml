@@ -2,10 +2,15 @@ version: "3"
 services:
 
   api:
-    image: starting-point-api
+    image: api
     ports:
       - 8080:8080
       - 9095:9095
+
+  performance:
+    image: performance-tests-api
+    depends_on:
+      - api
 
   prometheus:
     image: prom/prometheus

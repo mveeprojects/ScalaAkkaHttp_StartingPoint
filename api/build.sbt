@@ -1,3 +1,3 @@
-name := "starting-point-app"
+name := "api"
 
 test in assembly := {}
