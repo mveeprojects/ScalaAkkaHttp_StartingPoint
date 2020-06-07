@@ -42,9 +42,9 @@ To stop the containers when finished, run the above commands replacing the suffi
 
 ### Very basic PromQL queries for use in Grafana
 
-Show increase in 2xx responses over the last 10 minutes `increase(http_server_requests_total{http_status_code="2xx"}[1m])`
+Show increase in 2xx responses per minute `increase(http_server_requests_total{http_status_code="2xx"}[1m])`
 
-Show increase in 4xx responses over the last 10 minutes `increase(http_server_requests_total{http_status_code="4xx"}[1m])`
+Show increase in 4xx responses per minute `increase(http_server_requests_total{http_status_code="4xx"}[1m])`
 
 ### Sources
 
