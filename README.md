@@ -14,19 +14,19 @@ Basic performance tests written using Gatling to provide a basic level of traffi
 
 ## Creating and running the API with monitoring containers
 
-### Creating a JAR and Docker image of the API
+### Creating a JAR and Docker image of the API and Performance modules
 
-Create a fat JAR for dockerising `sbt clean assembly` (if using a Unix OS and you do not have sbt installed on your machine you can replace `sbt` with `./bin/sbtw`)
+Create fat JARs for dockerising `sbt clean assembly` (if using a Unix OS and you do not have sbt installed on your machine you can replace `sbt` with `./bin/sbtw`)
 
-Build API docker image `cd api` then `docker build . -t starting-point-api`
+Build API docker image `docker build ./api -t api`
+
+Build Performance docker image `docker build ./performance -t performance-tests-api`
 
 ### Running the API with monitoring (Prometheus and Grafana)
 
-_**Note:**_ Make sure you've built the api docker image as shown in the section above, and you are in the root of the project before running these commands.
+_**Note:**_ Make sure you've built the api and performance docker images as shown in the section above, and you are in the root of the project before running these commands.
  
-Windows `docker-compose -f .\docker\docker-compose-api-and-monitoring.yml up -d`
-
-Unix `docker-compose -f ./docker/docker-compose-api-and-monitoring.yml up -d`
+`docker-compose -f ./docker/docker-compose.yml up -d`
 
 To stop the containers when finished, run the above commands replacing the suffix `up -d` with `down`
 
@@ -42,9 +42,9 @@ To stop the containers when finished, run the above commands replacing the suffi
 
 ### Very basic PromQL queries for use in Grafana
 
-Show increase in 2xx responses over the last 10 minutes `increase(http_server_requests_total{http_status_code="2xx"}[10m])`
+Show increase in 2xx responses over the last 10 minutes `increase(http_server_requests_total{http_status_code="2xx"}[1m])`
 
-Show increase in 4xx responses over the last 10 minutes `increase(http_server_requests_total{http_status_code="4xx"}[10m])`
+Show increase in 4xx responses over the last 10 minutes `increase(http_server_requests_total{http_status_code="4xx"}[1m])`
 
 ### Sources
 
