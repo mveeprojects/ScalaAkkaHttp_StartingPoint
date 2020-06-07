@@ -51,9 +51,13 @@ When you're finished, run the below command from the root of the project to stop
 
 ### Very basic PromQL queries for use in Grafana
 
-Shows the rate of 2xx responses per minute `rate(http_server_requests_total{http_status_code="2xx"}[1m])`
+Show the rate of 2xx responses per minute `rate(http_server_requests_total{http_status_code="2xx"}[1m])`
 
 Show the rate of 4xx responses per minute `rate(http_server_requests_total{http_status_code="4xx"}[1m])`
+
+Show the rates all status codes together `sum(rate(http_server_requests_total[1m])) by (http_status_code)`
+
+Show the percentage of all responses that were 404s per minute `(sum(rate(http_server_requests_total{http_status_code="4xx"}[1m])) / sum(rate(http_server_requests_total[1m]))) * 100`
 
 ### References/Sources
 
@@ -62,5 +66,6 @@ Show the rate of 4xx responses per minute `rate(http_server_requests_total{http_
 * https://stackoverflow.com/a/58024050/3059314
 * https://timber.io/blog/promql-for-humans/
 * https://www.youtube.com/watch?v=hTjHuoWxsks (PromCon EU 2019: PromQL for Mere Mortals)
+* https://www.youtube.com/watch?v=PDxcEzu62jk (Monitoring, the Prometheus Way)
 * https://www.youtube.com/watch?v=nJMRmhbY5hY (Around 9m 30s for histogram quantile prometheus queries)
 * https://www.youtube.com/watch?v=_nZSrY784sY (Good explanation of rate())
