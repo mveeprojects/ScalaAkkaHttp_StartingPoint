@@ -69,3 +69,4 @@ Show the percentage of all responses that were 404s per minute `(sum(rate(http_s
 * https://www.youtube.com/watch?v=PDxcEzu62jk (Monitoring, the Prometheus Way)
 * https://www.youtube.com/watch?v=nJMRmhbY5hY (Around 9m 30s for histogram quantile prometheus queries)
 * https://www.youtube.com/watch?v=_nZSrY784sY (Good explanation of rate())
+* https://www.youtube.com/watch?v=6oSlgW6EKK4 (Grafana Prometheus with Heat Maps | Grafana Heatmap Histograms)
