@@ -12,7 +12,7 @@ import scala.language.postfixOps
 class BasicSimulations extends Simulation with PerformanceConfig {
 
   val httpConf: HttpProtocolBuilder = http.baseUrl(s"http://$host:$port")
-  val varianceOf4xx = 4
+  val varianceOf4xx                 = 4
 
   val basicEndpointCheckScenarios = List(
     Endpoint200Scenario.getHomeEndpointScenario.inject(
@@ -21,7 +21,9 @@ class BasicSimulations extends Simulation with PerformanceConfig {
     ),
     Endpoint404Scenario.getNonExistentEndpointScenario.inject(
       atOnceUsers(3),
-      rampUsersPerSec(rampUpUsersPerSec/varianceOf4xx) to numberOfUsers/varianceOf4xx during (rampUpDuration seconds)
+      rampUsersPerSec(
+        rampUpUsersPerSec / varianceOf4xx
+      ) to numberOfUsers / varianceOf4xx during (rampUpDuration seconds)
     ),
     Endpoint200DelayScenario.getRandomDelayEndpointScenario.inject(
       atOnceUsers(10),

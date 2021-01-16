@@ -21,7 +21,7 @@ class AppRouteSpec extends FeatureSpec with GivenWhenThen with Matchers with Res
       val response = metricsGetRequest
       Then("I should receive a 200 response with a non-empty message body")
       response.statusCode() shouldBe 200
-      response.body().print() shouldNot be (empty)
+      response.body().print() shouldNot be(empty)
     }
   }
 }

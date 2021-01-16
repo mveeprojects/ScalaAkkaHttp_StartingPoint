@@ -14,28 +14,33 @@ Basic performance tests written using Gatling to provide a basic level of traffi
 
 ## Prerequisites
 
-### Docker (inc. docker-compose) 
+### Docker (inc. docker-compose)
 
 Install this by following [the documentation on the Docker website](https://docs.docker.com/engine/install/)
 
 ### SBT
 
-If you're using a unix OS (MacOS/Linux), I have included a `sbtw` file under the `bin` directory at the root of this project so you can just replace the usage of `sbt` with `./bin/sbtw` where necessary.
+If you're using a unix OS (MacOS/Linux), I have included a `sbtw` file under the `bin` directory at the root of this
+project so you can just replace the usage of `sbt` with `./bin/sbtw` where necessary.
 
-If you're using Windows or would prefer to download sbt regardless, follow [the documentation on the official SBT website](https://www.scala-sbt.org/1.x/docs/Setup.html)
+If you're using Windows or would prefer to download sbt regardless,
+follow [the documentation on the official SBT website](https://www.scala-sbt.org/1.x/docs/Setup.html)
 
 ## Creating and running the API with monitoring containers
 
 ### Building and running the API and Performance modules along with monitoring containers
 
 `coldstart.sh` has been added to the root of this project to easily complete the following steps on your behalf:
+
 * clean down any API, Performance or Monitoring containers using docker-compose
 * build fat JARs of both API and Performance modules
 * build docker images of both API and Performance modules
 * run the API, Performance and Monitoring containers using docker-compose
-  * this automatically triggers the performance tests therefore generating traffic on the API, resulting in metrics available to our Monitoring containers immediately!
+    * this automatically triggers the performance tests therefore generating traffic on the API, resulting in metrics
+      available to our Monitoring containers immediately!
 
-When you're finished, run the below command from the root of the project to stop the API, Performance and Monitoring containers
+When you're finished, run the below command from the root of the project to stop the API, Performance and Monitoring
+containers
 
 `docker-compose -f ./docker/docker-compose.yml down`
 
@@ -57,7 +62,8 @@ Show the rate of 4xx responses per minute `rate(http_server_requests_total{http_
 
 Show the rates all status codes together `sum(rate(http_server_requests_total[1m])) by (http_status_code)`
 
-Show the percentage of all responses that were 404s per minute `(sum(rate(http_server_requests_total{http_status_code="4xx"}[1m])) / sum(rate(http_server_requests_total[1m]))) * 100`
+Show the percentage of all responses that were 404s per
+minute `(sum(rate(http_server_requests_total{http_status_code="4xx"}[1m])) / sum(rate(http_server_requests_total[1m]))) * 100`
 
 ### References/Sources
 

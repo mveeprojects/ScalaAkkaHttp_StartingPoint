@@ -8,7 +8,7 @@ import akka.http.scaladsl.server.Route
 import scala.concurrent.ExecutionContext
 
 trait AppRoutes {
-  implicit val system: ActorSystem = ActorSystem("my-mega-actor-system")
+  implicit val system: ActorSystem        = ActorSystem("my-mega-actor-system")
   implicit val executor: ExecutionContext = system.dispatcher
 
   def route: Route = concat(
@@ -16,7 +16,8 @@ trait AppRoutes {
       pathSingleSlash {
         complete(StatusCodes.OK -> "Hello, World!")
       }
-    }, get {
+    },
+    get {
       path("randomdelay") {
         def randomDurationToWait: Long = Math.floor(Math.random() * 10 * 100).toLong
         Thread.sleep(randomDurationToWait)

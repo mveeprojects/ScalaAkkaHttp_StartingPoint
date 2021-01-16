@@ -6,7 +6,6 @@ Simple "Hello, World!" endpoint -> http://localhost:8080/
 
 Metrics endpoint -> http://localhost:9095/
 
-
 ### Kanela Java agent
 
 Ensure when running this app the following is included (add to the VM options of your run config if using IntelliJ)
