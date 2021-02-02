@@ -13,8 +13,6 @@ import model.TweetJsonProtocol._
 
 import scala.concurrent.ExecutionContext
 
-//https://github.com/akka/akka-http/blob/master/akka-http-tests/src/test/scala/akka/http/scaladsl/server/EntityStreamingSpec.scala
-
 trait AppRoutes {
   implicit val system: ActorSystem        = ActorSystem("my-mega-actor-system")
   implicit val executor: ExecutionContext = system.dispatcher

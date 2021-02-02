@@ -76,3 +76,6 @@ minute `(sum(rate(http_server_requests_total{http_status_code="4xx"}[1m])) / sum
 * https://www.youtube.com/watch?v=nJMRmhbY5hY (Around 9m 30s for histogram quantile prometheus queries)
 * https://www.youtube.com/watch?v=_nZSrY784sY (Good explanation of rate())
 * https://www.youtube.com/watch?v=6oSlgW6EKK4 (Grafana Prometheus with Heat Maps | Grafana Heatmap Histograms)
+* https://doc.akka.io/docs/akka-http/current/routing-dsl/source-streaming-support.html (Akka HTTP Source Streaming)
+* https://github.com/akka/akka-http/blob/master/akka-http-tests/src/test/scala/akka/http/scaladsl/server/EntityStreamingSpec.scala (Akka HTTP Source Streaming raw code)
+
