@@ -6,8 +6,8 @@ import io.restassured.response.Response
 
 trait RestAssuredUtils extends AppConfig {
 
-  def apiGetRequest: Response =
-    RestAssured.when().get(s"http://$host:$port")
+  def apiGetRequest(route: String = "/"): Response =
+    RestAssured.when().get(s"http://$host:$port$route")
 
   def metricsGetRequest: Response =
     RestAssured.when().get(s"http://$host:9095")
