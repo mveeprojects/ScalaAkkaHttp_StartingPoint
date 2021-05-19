@@ -10,7 +10,7 @@ class AppRouteSpec extends AnyFeatureSpec with GivenWhenThen with Matchers with 
 
   implicit val jsonStreamingSupport: JsonEntityStreamingSupport = EntityStreamingSupport.json()
 
-  Feature("tweets")
+  Feature("tweets") {
     Scenario("/tweets endpoint should return 200") {
       When("I send a request to the /tweets endpoint")
       val response = apiGetRequest("/tweets")
