@@ -20,7 +20,7 @@ Install this by following [the documentation on the Docker website](https://docs
 
 ### SBT
 
-If you're using a unix OS (MacOS/Linux), I have included a `sbtw` file under the `bin` directory at the root of this
+If you're using a Unix OS (MacOS/Linux), I have included a `sbtw` file under the `bin` directory at the root of this
 project so you can just replace the usage of `sbt` with `./bin/sbtw` where necessary.
 
 If you're using Windows or would prefer to download sbt regardless,
