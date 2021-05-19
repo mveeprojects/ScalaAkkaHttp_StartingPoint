@@ -54,6 +54,10 @@ containers
 
 [Grafana (...:3000/)](http://localhost:3000)
 
+### Auth path cURL requests
+
+cURL with Basic (base64) auth -> `curl -v --user name:password localhost:8080/authpath`
+
 ### Very basic PromQL queries for use in Grafana
 
 Show the rate of 2xx responses per minute `rate(http_server_requests_total{http_status_code="2xx"}[1m])`
