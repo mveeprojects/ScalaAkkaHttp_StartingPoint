@@ -1,9 +1,10 @@
 package config
 
-import com.typesafe.config.ConfigFactory
+import pureconfig.ConfigSource
+import pureconfig.generic.auto._
 
-trait AppConfig {
-  private val config = ConfigFactory.load()
-  val host: String   = config.getString("app.host")
-  val port: Int      = config.getInt("app.port")
+object AppConfig {
+  case class HttpConfig(host: String, port: Int)
+  case class AppConfig(http: HttpConfig)
+  val appConfig: AppConfig = ConfigSource.default.loadOrThrow[AppConfig]
 }

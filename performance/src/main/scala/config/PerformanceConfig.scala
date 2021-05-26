@@ -1,13 +1,20 @@
 package config
 
-import com.typesafe.config.ConfigFactory
+import pureconfig.ConfigSource
+import pureconfig.generic.auto._
 
-trait PerformanceConfig {
-  val host: String           = config.getString("app.host")
-  val port: Int              = config.getInt("app.port")
-  val maxResponseTime: Int   = config.getInt("performance.maxResponsetime")
-  val numberOfUsers: Int     = config.getInt("performance.numberOfUsers")
-  val rampUpUsersPerSec: Int = config.getInt("performance.rampUpUsersPerSec")
-  val rampUpDuration: Int    = config.getInt("performance.rampUpDuration")
-  private val config         = ConfigFactory.load()
+object PerformanceConfig {
+
+  case class AppConfig(host: String, port: Int)
+
+  case class GatlingConfig(
+      maxResponseTime: Int,
+      numberOfUsers: Int,
+      rampUpUsersPerSec: Int,
+      rampUpDuration: Int
+  )
+
+  case class Config(app: AppConfig, gatling: GatlingConfig)
+
+  val perfTestConfig: Config = ConfigSource.default.loadOrThrow[Config]
 }

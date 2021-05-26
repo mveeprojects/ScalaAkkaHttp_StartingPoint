@@ -9,6 +9,7 @@ import akka.http.scaladsl.server.Route
 import akka.http.scaladsl.server.directives.Credentials
 import akka.stream.scaladsl.Source
 import com.typesafe.scalalogging.LazyLogging
+import config.CustomMetrics._
 import model.Tweet
 import model.TweetJsonProtocol._
 import service.TweetRepo.getTweets
@@ -33,16 +34,19 @@ trait AppRoutes extends LazyLogging {
 
   def route: Route = concat(
     path("tweets") {
+      tweetsEndpointCounter.increment
       val tweets: Source[Tweet, NotUsed] = getTweets
       complete(tweets)
     },
     get {
       pathSingleSlash {
+        helloWorldEndpointCounter.increment
         complete(StatusCodes.OK -> "Hello, World!")
       }
     },
     get {
       path("authpath") {
+        authPathEndpointCounter.increment
         authenticateBasic(realm = "secure auth path", basicAuthenticator) { userName =>
           complete(s"The user is $userName")
         }
@@ -50,6 +54,7 @@ trait AppRoutes extends LazyLogging {
     },
     get {
       path("randomdelay") {
+        randomDelayEndpointCounter.increment
         def randomDurationToWait: Long = Math.floor(Math.random() * 10 * 100).toLong
         Thread.sleep(randomDurationToWait)
         complete(StatusCodes.OK -> "Waited for a bit then responded")
