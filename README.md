@@ -65,6 +65,7 @@ Show the rate of 2xx responses per minute `rate(http_server_requests_total{http_
 Show the rate of 4xx responses per minute `rate(http_server_requests_total{http_status_code="4xx"}[1m])`
 
 Show the rates all status codes together `sum(rate(http_server_requests_total[1m])) by (http_status_code)`
+   * need to update this to [rate of sum not sum of rate](https://www.robustperception.io/rate-then-sum-never-sum-then-rate)
 
 Show the percentage of all responses that were 404s per
 minute `(sum(rate(http_server_requests_total{http_status_code="4xx"}[1m])) / sum(rate(http_server_requests_total[1m]))) * 100`
