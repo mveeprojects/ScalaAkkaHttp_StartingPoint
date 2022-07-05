@@ -46,13 +46,12 @@ containers
 
 ### Endpoints
 
-[API "Hello, World!" endpoint (...:8080/)](http://localhost:8080)
+* [API "Hello, World!" endpoint (...:8080/)](http://localhost:8080).
+* [API metrics endpoint (...:9095/)](http://localhost:9095).
+* [Prometheus (...:9090/)](http://localhost:9090).
+* [Grafana (...:3000/)](http://localhost:3000).
+  * [List of dashboards](http://localhost:3000/dashboards).
 
-[API metrics endpoint (...:9095/)](http://localhost:9095)
-
-[Prometheus (...:9090/)](http://localhost:9090)
-
-[Grafana (...:3000/)](http://localhost:3000)
 
 ### Auth path cURL requests
 
@@ -72,15 +71,16 @@ minute `(sum(rate(http_server_requests_total{http_status_code="4xx"}[1m])) / sum
 
 ### References/Sources
 
-* https://dzone.com/articles/dockerizing-your-scala-app
-* https://www.scala-sbt.org/1.x/docs/Multi-Project.html
-* https://stackoverflow.com/a/58024050/3059314
-* https://timber.io/blog/promql-for-humans/
-* https://www.youtube.com/watch?v=hTjHuoWxsks (PromCon EU 2019: PromQL for Mere Mortals)
-* https://www.youtube.com/watch?v=PDxcEzu62jk (Monitoring, the Prometheus Way)
-* https://www.youtube.com/watch?v=nJMRmhbY5hY (Around 9m 30s for histogram quantile prometheus queries)
-* https://www.youtube.com/watch?v=_nZSrY784sY (Good explanation of rate())
-* https://www.youtube.com/watch?v=6oSlgW6EKK4 (Grafana Prometheus with Heat Maps | Grafana Heatmap Histograms)
-* https://doc.akka.io/docs/akka-http/current/routing-dsl/source-streaming-support.html (Akka HTTP Source Streaming)
-* https://github.com/akka/akka-http/blob/master/akka-http-tests/src/test/scala/akka/http/scaladsl/server/EntityStreamingSpec.scala (Akka HTTP Source Streaming raw code)
-
+* [Dzone: dockerizing-your-scala-app](https://dzone.com/articles/dockerizing-your-scala-app).
+* [SBT docs: multi-project setup](https://www.scala-sbt.org/1.x/docs/Multi-Project.html).
+* [Stack Overflow: SBT assembly strategy issue](https://stackoverflow.com/a/58024050/3059314).
+* [Medium: Grafana Docker setup](https://medium.com/swlh/easy-grafana-and-docker-compose-setup-d0f6f9fcec13).
+  * [GitHub: annea-ai/grafana-infrastructure](https://github.com/annea-ai/grafana-infrastructure).
+* [Timber: PromQL for Humans](https://timber.io/blog/promql-for-humans/).
+* [YouTube: PromCon EU 2019: PromQL for Mere Mortals](https://www.youtube.com/watch?v=hTjHuoWxsks).
+* [YouTube: Monitoring, the Prometheus Way](https://www.youtube.com/watch?v=PDxcEzu62jk).
+* [YouTube: The 4 Types Of Prometheus Metrics (Around 9m 30s for histogram quantile prometheus queries)](https://www.youtube.com/watch?v=nJMRmhbY5hY).
+* [YouTube: Prometheus Example Queries (Good explanation of rate())](https://www.youtube.com/watch?v=_nZSrY784sY).
+* [YouTube: Grafana Prometheus with Heat Maps | Grafana Heatmap Histograms](https://www.youtube.com/watch?v=6oSlgW6EKK4).
+* [Akka docs: HTTP Source Streaming](https://doc.akka.io/docs/akka-http/current/routing-dsl/source-streaming-support.html).
+  * [GitHub: Akka HTTP Source Streaming raw code](https://github.com/akka/akka-http/blob/master/akka-http-tests/src/test/scala/akka/http/scaladsl/server/EntityStreamingSpec.scala).
