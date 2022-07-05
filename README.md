@@ -49,7 +49,7 @@ containers
 * [API "Hello, World!" endpoint (...:8080/)](http://localhost:8080).
 * [API metrics endpoint (...:9095/)](http://localhost:9095).
 * [Prometheus (...:9090/)](http://localhost:9090).
-* [Grafana (...:3000/)](http://localhost:3000).
+* [Grafana (...:3000/)](http://localhost:3000) (username: `admin`, password `admin`).
   * [List of dashboards](http://localhost:3000/dashboards).
 
 
