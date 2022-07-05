@@ -5,4 +5,4 @@ datasources:
     type: prometheus
     isDefault: true
     access: proxy
-    url: prometheus:9090
+    url: http://prometheus:9090
