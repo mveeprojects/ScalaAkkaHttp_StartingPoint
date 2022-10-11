@@ -30,7 +30,7 @@ follow [the documentation on the official SBT website](https://www.scala-sbt.org
 
 ### Building and running the API and Performance modules along with monitoring containers
 
-`coldstart.sh` has been added to the root of this project to easily complete the following steps on your behalf:
+An executable file called called`coldstart.sh` has been added to the root of this project to easily complete the following steps on your behalf:
 
 * clean down any API, Performance or Monitoring containers using docker-compose
 * build fat JARs of both API and Performance modules
@@ -39,15 +39,23 @@ follow [the documentation on the official SBT website](https://www.scala-sbt.org
     * this automatically triggers the performance tests therefore generating traffic on the API, resulting in metrics
       available to our Monitoring containers immediately!
 
+Run it as shown below.
+
+```shell
+./coldstart.sh
+```
+
 When you're finished, run the below command from the root of the project to stop the API, Performance and Monitoring
 containers
 
-`docker-compose -f ./docker/docker-compose.yml down`
+```
+docker-compose -f ./docker/docker-compose.yml down
+```
 
 ### Endpoints
 
-* [API "Hello, World!" endpoint (...:8080/)](http://localhost:8080).
-* [API metrics endpoint (...:9095/)](http://localhost:9095).
+* [API: "Hello, World!" endpoint (...:8080/)](http://localhost:8080).
+* [API: metrics endpoint (...:9095/)](http://localhost:9095).
 * [Prometheus (...:9090/)](http://localhost:9090).
 * [Grafana (...:3000/)](http://localhost:3000) (username: `admin`, password `admin`).
   * [List of dashboards](http://localhost:3000/dashboards).
@@ -55,19 +63,43 @@ containers
 
 ### Auth path cURL requests
 
-cURL with Basic (base64) auth -> `curl -v --user name:password localhost:8080/authpath`
+cURL with basic auth
+```
+curl -v --user name:password localhost:8080/authpath
+```
 
 ### Very basic PromQL queries for use in Grafana
 
-Show the rate of 2xx responses per minute `rate(http_server_requests_total{http_status_code="2xx"}[1m])`
+Show the total number of hits to each endpoint over the past minute.
+```
+sum(increase(myendpointhits_total[1m])) by (endpoint)
+```
 
-Show the rate of 4xx responses per minute `rate(http_server_requests_total{http_status_code="4xx"}[1m])`
+Show the rate of hits/transactions per second to each endpoint over the past minute.
+```
+sum(rate(myendpointhits_total[1m])) by (endpoint)
+```
 
-Show the rates all status codes together `sum(rate(http_server_requests_total[1m])) by (http_status_code)`
-   * need to update this to [rate of sum not sum of rate](https://www.robustperception.io/rate-then-sum-never-sum-then-rate)
+Show the rate of 2xx responses per second over the past minute. 
+```
+rate(http_server_requests_total{http_status_code="2xx"}[1m])
+```
+
+Show the rate of 4xx responses per second over the past minute.
+```
+rate(http_server_requests_total{http_status_code="4xx"}[1m])
+```
+
+Show the rate of requests per status code over the past minute.
+```
+sum(rate(http_server_requests_total[1m])) by (http_status_code)
+```
 
 Show the percentage of all responses that were 404s per
-minute `(sum(rate(http_server_requests_total{http_status_code="4xx"}[1m])) / sum(rate(http_server_requests_total[1m]))) * 100`
+minute.
+```
+(sum(rate(http_server_requests_total{http_status_code="4xx"}[1m])) / sum(rate(http_server_requests_total[1m]))) * 100
+```
 
 ### References/Sources
 
@@ -76,6 +108,7 @@ minute `(sum(rate(http_server_requests_total{http_status_code="4xx"}[1m])) / sum
 * [Stack Overflow: SBT assembly strategy issue](https://stackoverflow.com/a/58024050/3059314).
 * [Medium: Grafana Docker setup](https://medium.com/swlh/easy-grafana-and-docker-compose-setup-d0f6f9fcec13).
   * [GitHub: annea-ai/grafana-infrastructure](https://github.com/annea-ai/grafana-infrastructure).
+* [Robust Perception: Rate of sum not sum of rate](https://www.robustperception.io/rate-then-sum-never-sum-then-rate)
 * [Timber: PromQL for Humans](https://timber.io/blog/promql-for-humans/).
 * [YouTube: PromCon EU 2019: PromQL for Mere Mortals](https://www.youtube.com/watch?v=hTjHuoWxsks).
 * [YouTube: Monitoring, the Prometheus Way](https://www.youtube.com/watch?v=PDxcEzu62jk).
