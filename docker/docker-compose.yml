@@ -4,8 +4,8 @@ services:
   api:
     image: api
     ports:
-      - 8080:8080
-      - 9095:9095
+      - "8080:8080"
+      - "9095:9095"
 
   performance:
     image: performance-tests-api
@@ -17,7 +17,7 @@ services:
     volumes:
       - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
-      - 9090:9090
+      - "9090:9090"
 
   grafana:
     image: grafana/grafana
@@ -26,6 +26,6 @@ services:
       - ./config/dashboard.yml:/etc/grafana/provisioning/dashboards/dashboard.yml
       - ./dashboards:/etc/grafana/dashboards
     ports:
-      - 3000:3000
+      - "3000:3000"
     depends_on:
       - prometheus
