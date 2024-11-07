@@ -13,6 +13,20 @@ object Dependencies {
   val mockitoVersion      = "1.16.15"
   val pureConfig          = "0.14.0"
 
+  val openTelemetry = {
+    val version = "1.43.0"
+    Seq(
+      "io.opentelemetry" % "opentelemetry-bom" % version pomOnly(),
+      "io.opentelemetry" % "opentelemetry-api" % version,
+      "io.opentelemetry" % "opentelemetry-sdk" % version,
+      "io.opentelemetry" % "opentelemetry-sdk-extension-autoconfigure" % version,
+      "io.opentelemetry" % "opentelemetry-exporter-prometheus" % s"$version-alpha",
+      "io.opentelemetry" % "opentelemetry-exporter-zipkin" % version,
+      "io.opentelemetry" % "opentelemetry-exporter-otlp" % version,
+      "io.opentelemetry.javaagent" % "opentelemetry-javaagent" % "2.9.0" % "runtime"
+    )
+  }
+
   val configDependencies = Seq(
     "com.github.pureconfig" %% "pureconfig" % pureConfig
   )
@@ -37,7 +51,7 @@ object Dependencies {
     "org.apache.pekko"           %% "pekko-stream-testkit"    % pekkoVersion,
     "io.spray"                   %% "spray-json"              % sprayJsonVersion,
     "org.mockito"                %% "mockito-scala-scalatest" % mockitoVersion
-  ) ++ testingDependencies ++ configDependencies
+  ) ++ testingDependencies ++ configDependencies ++ openTelemetry
 
   val performanceDependencies: Def.Setting[Seq[ModuleID]] = libraryDependencies ++= Seq(
     "io.gatling"            % "gatling-core"              % gatlingVersion,
