@@ -1,7 +1,7 @@
 package service
 
-import akka.NotUsed
-import akka.stream.scaladsl.Source
+import org.apache.pekko.NotUsed
+import org.apache.pekko.stream.scaladsl.Source
 import model.Tweet
 
 trait TweetRepo {

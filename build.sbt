@@ -1,7 +1,7 @@
 import Dependencies._
 import sbtassembly.MergeStrategy
 
-name := "ScalaAkkaHttp_StartingPoint"
+name := "ScalaPekkoHttp_StartingPoint"
 version := "0.1"
 organization := "mveeprojects"
 scalaVersion := "2.13.4"

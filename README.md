@@ -1,6 +1,6 @@
-# ScalaAkkaHttp_StartingPoint
+# ScalaPekkoHttp_StartingPoint
 
-This codebase is designed as a simple starting point for an Akka HTTP application.
+This codebase is designed as a simple starting point for a Pekko HTTP application.
 
 ## Modules:
 

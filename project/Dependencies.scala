@@ -2,11 +2,10 @@ import sbt.Keys.libraryDependencies
 import sbt._
 
 object Dependencies {
-  val akkaVersion         = "2.6.12"
-  val akkaHttpVersion     = "10.2.3"
+  val pekkoVersion        = "1.1.0"
   val scalaLoggingVersion = "3.9.2"
   val logbackVersion      = "1.2.3"
-  val kamonVersion        = "2.1.9"
+  val kamonVersion        = "2.7.5"
   val gatlingVersion      = "3.3.1"
   val scalaTestVersion    = "3.2.3"
   val restAssuredVersion  = "4.1.1"
@@ -24,18 +23,18 @@ object Dependencies {
   )
 
   val apiDependencies: Def.Setting[Seq[ModuleID]] = libraryDependencies ++= Seq(
-    "com.typesafe.akka"          %% "akka-actor"              % akkaVersion,
-    "com.typesafe.akka"          %% "akka-stream"             % akkaVersion,
-    "com.typesafe.akka"          %% "akka-http"               % akkaHttpVersion,
+    "org.apache.pekko"           %% "pekko-actor"             % pekkoVersion,
+    "org.apache.pekko"           %% "pekko-stream"            % pekkoVersion,
+    "org.apache.pekko"           %% "pekko-http"              % pekkoVersion,
     "com.typesafe.scala-logging" %% "scala-logging"           % scalaLoggingVersion,
     "ch.qos.logback"              % "logback-classic"         % logbackVersion,
     "io.kamon"                   %% "kamon-core"              % kamonVersion,
-    "io.kamon"                   %% "kamon-akka-http"         % kamonVersion,
+    "io.kamon"                   %% "kamon-pekko-http"        % kamonVersion,
     "io.kamon"                   %% "kamon-system-metrics"    % kamonVersion exclude ("org.slf4j", "slf4j-api"),
     "io.kamon"                   %% "kamon-prometheus"        % kamonVersion,
-    "com.typesafe.akka"          %% "akka-http-spray-json"    % akkaHttpVersion,
-    "com.typesafe.akka"          %% "akka-http-testkit"       % akkaHttpVersion,
-    "com.typesafe.akka"          %% "akka-stream-testkit"     % akkaVersion,
+    "org.apache.pekko"           %% "pekko-http-spray-json"   % pekkoVersion,
+    "org.apache.pekko"           %% "pekko-http-testkit"      % pekkoVersion,
+    "org.apache.pekko"           %% "pekko-stream-testkit"    % pekkoVersion,
     "io.spray"                   %% "spray-json"              % sprayJsonVersion,
     "org.mockito"                %% "mockito-scala-scalatest" % mockitoVersion
   ) ++ testingDependencies ++ configDependencies

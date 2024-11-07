@@ -1,4 +1,4 @@
-import akka.http.scaladsl.Http
+import org.apache.pekko.http.scaladsl.Http
 import com.typesafe.scalalogging.LazyLogging
 import config.AppConfig.appConfig.http._
 import kamon.Kamon
